@@ -4,6 +4,7 @@ import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 
@@ -15,6 +16,7 @@ public class UserEntity implements Serializable {
 	
 	@Id
 	@GeneratedValue
+//	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	@Column(nullable=false)
@@ -26,7 +28,7 @@ public class UserEntity implements Serializable {
 	@Column(nullable=false, length=50)
 	private String lastName;
 	
-	@Column(nullable=false, length=120)
+	@Column(nullable=false, length=120,unique=true)
 	private String email;
 	
 	@Column(nullable=false)
@@ -34,7 +36,8 @@ public class UserEntity implements Serializable {
 	
 	private String emailVerificationToken;
 	
-	@Column(nullable=false, columnDefinition="boolean default false")
+//	@Column(nullable=false, columnDefinition="boolean default false")
+//	@Column(nullable=false)
 	private Boolean emailVerificationStatus = false;
 
 	public long getId() {
